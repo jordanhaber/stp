@@ -28,7 +28,7 @@ class Bird(Prop):
         self.ground = target
         self.flying = True
         self.sitting = False
-        self.actions = ['flying','soaring','gliding', 'flapping']
+        self.actions = ['flying','fliting','gliding']
         replacements = {'emphasis': ['overhead', 'far above', 'aloft']}
         self.descriptions = [Sentence(self, "It's a {adjective} {name}, {action} {emphasis}.", replacements)]
 
@@ -38,6 +38,6 @@ class Crow(Bird):
 
     def __init__(self):
         super().__init__('crow', [])
-        self.adjectives = ['shifty','shadowy','drab']
+        self.adjectives = ['shifty','ominous']
         self.verbs = ['staring','gazing','looking']
         self.adverbs = ['inquisitively','expectantly']
