@@ -9,6 +9,7 @@ class Prop:
     adjectives = []
     adverbs = []
     verbs = []
+    actions = []
 
     def __init__(self, name, adjectives = []):
         self.name = name
@@ -18,3 +19,6 @@ class Prop:
     def describe(self):
         description = random.choice(self.descriptions)
         return description.write()
+
+    def adjective(self):
+        return random.choice(self.adjectives)

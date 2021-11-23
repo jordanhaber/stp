@@ -16,7 +16,8 @@ class PropList:
 
     def describe(self):
         for prop in self.props:
-            print('A ' + prop.name + '. ' + prop.describe())
+            #print('A ' + prop.name + '. ' + prop.describe())
+            print('[ ' + prop.name + ' ]\t\t' + prop.describe())
 
     def generate(self):
         self.reset()
@@ -27,7 +28,15 @@ class PropList:
         self.props.append(Prop('flower', ['beautiful', 'flourishing', 'blooming']))
         self.props.append(Prop('flower', ['wilting', 'dying', 'neglected']))
 
+        tree = Prop('tree', ['deciduous','leafy','yellow'])
+        self.props.append(tree)
+
         crow = birds.Bird('crow', ['shifty','shadowy','drab'])
         crow.verbs = ['staring','gazing','looking']
         crow.adverbs = ['inquisitively','expectantly']
+        crow.sit(tree)
+        self.props.append(crow)
+
+        crow = birds.Crow()
+        crow.fly()
         self.props.append(crow)

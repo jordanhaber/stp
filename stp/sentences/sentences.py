@@ -20,6 +20,8 @@ class Sentence:
     def generate(self):
         sentence = self.structure
 
+        sentence = re.sub('\{name\}', self.subject.name, sentence)
+
         if len(self.subject.adjectives):
             adjective = random.choice(self.subject.adjectives)
             sentence = re.sub('\{adjective\}', adjective, sentence)
@@ -31,5 +33,14 @@ class Sentence:
         if len(self.subject.verbs):
             verb = random.choice(self.subject.verbs)
             sentence = re.sub('\{verb\}', verb, sentence)
+
+        if len(self.subject.actions):
+            action = random.choice(self.subject.actions)
+            sentence = re.sub('\{action\}', action, sentence)
+
+        if len(self.replacements):
+            for key in self.replacements:
+                replacement = random.choice(self.replacements[key])
+                sentence = re.sub('\{' + key + '\}', replacement, sentence)
 
         self.sentence = sentence
