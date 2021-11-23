@@ -22,14 +22,6 @@ class PropList:
     def generate(self):
         self.reset()
 
-        test = Prop('"a" to "an"', ['abyssal', 'endearing', 'invincible', 'opaque', 'unbiased'])
-        test.descriptions = [Sentence(test, "It's a {adjective} test.")]
-        self.props.append(test)
-
-        test = Prop('"a" to "an"', ['abyssal', 'endearing', 'invincible', 'opaque', 'unbiased'])
-        test.descriptions = [Sentence(test, "A {adjective} test.")]
-        self.props.append(test)
-
         self.props.append(Prop('candle', ['flickering', 'bright', 'lit']))
         self.props.append(Prop('candle', ['extingushed', 'depleted', 'unlit']))
 

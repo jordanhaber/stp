@@ -20,23 +20,24 @@ class Sentence:
     def generate(self):
         sentence = self.structure
 
-        sentence = re.sub(r'\{name\}', self.subject.name, sentence)
+        if self.subject:
+            sentence = re.sub(r'\{name\}', self.subject.name, sentence)
 
-        if len(self.subject.adjectives):
-            adjective = random.choice(self.subject.adjectives)
-            sentence = re.sub(r'\{adjective\}', adjective, sentence)
+            if hasattr(self.subject, 'adjectives') and len(self.subject.adjectives):
+                adjective = random.choice(self.subject.adjectives)
+                sentence = re.sub(r'\{adjective\}', adjective, sentence)
 
-        if len(self.subject.adverbs):
-            adverb = random.choice(self.subject.adverbs)
-            sentence = re.sub(r'\{adverb\}', adverb, sentence)
+            if hasattr(self.subject, 'adverbs') and len(self.subject.adverbs):
+                adverb = random.choice(self.subject.adverbs)
+                sentence = re.sub(r'\{adverb\}', adverb, sentence)
 
-        if len(self.subject.verbs):
-            verb = random.choice(self.subject.verbs)
-            sentence = re.sub(r'\{verb\}', verb, sentence)
+            if hasattr(self.subject, 'verb') and len(self.subject.verbs):
+                verb = random.choice(self.subject.verbs)
+                sentence = re.sub(r'\{verb\}', verb, sentence)
 
-        if len(self.subject.actions):
-            action = random.choice(self.subject.actions)
-            sentence = re.sub(r'\{action\}', action, sentence)
+            if hasattr(self.subject, 'action') and len(self.subject.actions):
+                action = random.choice(self.subject.actions)
+                sentence = re.sub(r'\{action\}', action, sentence)
 
         if len(self.replacements):
             for key in self.replacements:

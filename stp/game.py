@@ -15,7 +15,9 @@ class Game:
     def describe(self):
         for name in self.proplists:
             print('[ ' + name + ' ]')
+            print()
             self.proplists[name].describe()
+            print()
             print()
 
     def generate(self):
