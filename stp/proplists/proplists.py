@@ -3,6 +3,7 @@
 from stp.sentences.sentences import Sentence
 from stp.props.props import Prop
 from stp.props.creatures import *
+import random
 
 class PropList:
 
@@ -17,7 +18,7 @@ class PropList:
     def describe(self):
         for prop in self.props:
             #print('A ' + prop.name + '. ' + prop.describe())
-            print('[ ' + prop.name + ' ]\t' + prop.describe())
+            print('[ ' + prop.get('name') + ' ]: ' + prop.describe())
 
     def generate(self):
         self.reset()
@@ -27,6 +28,13 @@ class PropList:
 
         self.props.append(Prop('flower', ['beautiful', 'flourishing', 'blooming']))
         self.props.append(Prop('flower', ['wilting', 'dying', 'neglected']))
+
+        grass = Prop('patch of grass', ['dry','faded','dead'])
+        self.props.append(grass)
+
+        creature = creatures.Creature(['creature', 'critter'],['peaceful','calm','meditative'])
+        creature.sit(grass)
+        self.props.append(creature)
 
         tree = Prop('tree', ['deciduous','leafy','yellow'])
         self.props.append(tree)

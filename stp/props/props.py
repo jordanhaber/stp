@@ -5,12 +5,6 @@ import random
 
 class Prop:
 
-    descriptions = []
-    adjectives = []
-    adverbs = []
-    verbs = []
-    actions = []
-
     def __init__(self, name, adjectives = []):
         self.name = name
         self.adjectives = adjectives
@@ -20,5 +14,19 @@ class Prop:
         description = random.choice(self.descriptions)
         return description.write()
 
-    def adjective(self):
-        return random.choice(self.adjectives)
+    def get(self, key):
+        try:
+            value = getattr(self, key)
+        except AttributeError:
+            try:
+                value = getattr(self, key + 's')
+            except AttributeError:
+                return None
+
+        if type(value) is list:
+            try:
+                return random.choice(value)
+            except IndexError:
+                return None
+
+        return value

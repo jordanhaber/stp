@@ -20,31 +20,22 @@ class Sentence:
     def generate(self):
         sentence = self.structure
 
-        if self.subject:
-            sentence = re.sub(r'\{name\}', self.subject.name, sentence)
-
-            if hasattr(self.subject, 'adjectives') and len(self.subject.adjectives):
-                adjective = random.choice(self.subject.adjectives)
-                sentence = re.sub(r'\{adjective\}', adjective, sentence)
-
-            if hasattr(self.subject, 'adverbs') and len(self.subject.adverbs):
-                adverb = random.choice(self.subject.adverbs)
-                sentence = re.sub(r'\{adverb\}', adverb, sentence)
-
-            if hasattr(self.subject, 'verb') and len(self.subject.verbs):
-                verb = random.choice(self.subject.verbs)
-                sentence = re.sub(r'\{verb\}', verb, sentence)
-
-            if hasattr(self.subject, 'action') and len(self.subject.actions):
-                action = random.choice(self.subject.actions)
-                sentence = re.sub(r'\{action\}', action, sentence)
+        for token in re.finditer(r'(\{)([^\}]*)(\})', sentence):
+            key = token.group(2)
+            value = self.subject.get(key)
+            if value:
+                sentence = re.sub(r'\{' + key + '\}', value, sentence)
 
         if len(self.replacements):
             for key in self.replacements:
                 replacement = random.choice(self.replacements[key])
                 sentence = re.sub(r'\{' + key + '\}', replacement, sentence)
 
+        if sentence[0].islower():
+            sentence = sentence[0].upper() + sentence[1:]
+
         sentence = re.sub(r'(A| a) (a|e|i|o|u)', a_to_an, sentence)
+
         self.sentence = sentence
 
 def a_to_an(match):
