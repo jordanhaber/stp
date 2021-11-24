@@ -1,28 +1,30 @@
 #!/usr/bin/env python3
 
-from stp.proplists.proplists import PropList
+from stp.scenes.scenes import Scene
 
 class Game:
 
-    proplists = {}
+    scenes = {}
+    scene = None
 
     def __init__(self):
         pass
 
     def reset(self):
-        self.proplists = {}
+        self.scenes = {}
 
     def describe(self):
-        for name in self.proplists:
+        print()
+        for name in self.scenes:
             print('[ ' + name + ' ]')
             print()
-            self.proplists[name].describe()
+            self.scenes[name].describe()
             print()
             print()
 
     def generate(self):
         self.reset()
 
-        proplist = PropList()
-        proplist.generate()
-        self.proplists['generated prop list'] = proplist;
+        scene = Scene()
+        scene.generate()
+        self.scenes['generated scene'] = scene;

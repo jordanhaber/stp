@@ -5,7 +5,7 @@ from stp.props.props import Prop
 from stp.props.creatures import *
 import random
 
-class PropList:
+class Scene:
 
     props = []
 
