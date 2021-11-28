@@ -5,7 +5,7 @@ from stp.props.props import Prop
 import unittest
 import re
 
-class TestSentences(unittest.TestCase):
+class TestProps(unittest.TestCase):
 
     def test_add(self):
         parent = Prop('Parent')
