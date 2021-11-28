@@ -8,11 +8,12 @@ class Plant(Prop):
     life = 100
     health = life
 
-    target = None
     planted = True
 
-    def __init__(self, name, ground):
+    def __init__(self, name):
         super().__init__(name)
-        ground.add(self)
-        self.planted = True
         self.descriptions = [Sentence(self, "It's {adjective}, growing out of a {parent.name}.")]
+
+    def plant(self, target):
+        target.add(self)
+        self.planted = True

@@ -61,7 +61,8 @@ class Scene:
         creature.sit(self.ground)
         self.props.append(creature)
 
-        tree = plants.Plant('tree', self.ground)
+        tree = plants.Plant('tree')
+        tree.plant(grass)
         tree.adjectives = ['deciduous','leafy','yellow']
         self.props.append(tree)
 

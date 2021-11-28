@@ -18,12 +18,14 @@ class Prop:
         return description.write()
 
     def add(self, prop):
+        if prop.parent:
+            prop.parent.remove(prop)
         self.children.append(prop)
         prop.parent = self
 
     def remove(self, prop):
         self.children.remove(prop)
-        prop.parent = None                
+        prop.parent = None
 
     def get(self, key):
         try:

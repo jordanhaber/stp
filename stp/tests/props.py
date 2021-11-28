@@ -22,5 +22,11 @@ class TestProps(unittest.TestCase):
         self.assertTrue(child.parent == None)
         self.assertFalse(child in parent.children)
 
+    def test_get(self):
+        prop = Prop('Test')
+        prop.adjectives = ['test', 'test']
+        self.assertEqual(prop.get('name'), 'Test')
+        self.assertEqual(prop.get('adjective'), 'test')
+
 if __name__ == '__main__':
     unittest.main()
