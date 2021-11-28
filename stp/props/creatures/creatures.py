@@ -9,17 +9,16 @@ class Creature(Prop):
     health = life
 
     target = None
-    ground = None
     sitting = False
 
     def __init__(self, name, adjectives = []):
         super().__init__(name, adjectives)
 
     def sit(self, target):
-        self.ground = target
+        target.add(self)
         self.sitting = True
         self.actions = ['sitting','resting']
         replacements = {'emphasis': ['on a', 'upon a']}
 
-        sentence = "It's a {adjective} {name}, {action} {emphasis} " + self.ground.get('adjectives') + " " + self.ground.name + "."
+        sentence = "It's a {adjective} {name}, {action} {emphasis} {parent.adjective} {parent.name}."
         self.descriptions = [Sentence(self, sentence, replacements)]

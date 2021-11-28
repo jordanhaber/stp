@@ -5,6 +5,9 @@ import random
 
 class Prop:
 
+    parent = None
+    children = []
+
     def __init__(self, name, adjectives = []):
         self.name = name
         self.adjectives = adjectives
@@ -13,6 +16,10 @@ class Prop:
     def describe(self):
         description = random.choice(self.descriptions)
         return description.write()
+
+    def add(self, prop):
+        self.children.append(prop)
+        prop.parent = self
 
     def get(self, key):
         try:

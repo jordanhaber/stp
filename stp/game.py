@@ -4,21 +4,21 @@ from stp.scenes.scenes import Scene
 
 class Game:
 
-    scenes = {}
+    scenes = []
     scene = None
 
     def __init__(self):
         pass
 
     def reset(self):
-        self.scenes = {}
+        self.scenes = []
 
     def describe(self):
         print()
-        for name in self.scenes:
-            print('[ ' + name + ' ]')
+        for scene in self.scenes:
+            print('[ ' + scene.name + ' ]')
             print()
-            self.scenes[name].describe()
+            scene.describe()
             print()
             print()
 
@@ -27,4 +27,4 @@ class Game:
 
         scene = Scene()
         scene.generate()
-        self.scenes['generated scene'] = scene;
+        self.scenes.append(scene);

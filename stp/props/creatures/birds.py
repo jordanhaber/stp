@@ -21,11 +21,11 @@ class Bird(Creature):
         self.actions = ['sitting','perched','resting']
         replacements = {'emphasis': ['on a', 'upon a', 'gingerly on a']}
 
-        sentence = "It's a {adjective} {name}, {action} {emphasis} " + self.ground.get('adjectives') + " " + self.ground.name + "."
+        sentence = "It's a {adjective} {name}, {action} {emphasis} {parent.adjective} {parent.name}."
         sentence += " It's {verb} at you {adverb}."
         self.descriptions = [Sentence(self, sentence, replacements)]
 
-        sentence = "{action} {emphasis} " + self.ground.get('adjectives') + " " + self.ground.name + ", the {adjective} {name} is {verb} at you {adverb}."
+        sentence = "{action} {emphasis} {parent.adjective} {parent.name}, the {adjective} {name} is {verb} at you {adverb}."
         self.descriptions.append(Sentence(self, sentence, replacements))
 
     def fly(self, target = None):

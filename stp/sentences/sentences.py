@@ -20,11 +20,16 @@ class Sentence:
     def generate(self):
         sentence = self.structure
 
-        for token in re.finditer(r'(\{)([^\}]*)(\})', sentence):
-            key = token.group(2)
-            value = self.subject.get(key)
-            if value:
-                sentence = re.sub(r'\{' + key + '\}', value, sentence)
+        if self.subject:
+            for token in re.finditer(r'(\{)([^\}]*)(\})', sentence):
+                key = token.group(2)
+                subkey = key.split('.')
+                if len(subkey) > 1:
+                    value = self.subject.get(subkey[0]).get(subkey[1])
+                else:
+                    value = self.subject.get(key)
+                if value:
+                    sentence = re.sub(r'\{' + key + '\}', value, sentence)
 
         if len(self.replacements):
             for key in self.replacements:

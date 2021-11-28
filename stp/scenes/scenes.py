@@ -3,40 +3,66 @@
 from stp.sentences.sentences import Sentence
 from stp.props.props import Prop
 from stp.props.creatures import *
+from stp.props.plants import *
 import random
 
 class Scene:
 
+    name = ''
+
+    ground = None
+    creatures = []
+    plants = []
     props = []
+
+    light = 0
 
     def __init__(self):
         pass
 
     def reset(self):
+        self.ground = None
+        self.creatures = []
+        self.plants = []
         self.props = []
+        self.light = 0
 
     def describe(self):
         for prop in self.props:
-            #print('A ' + prop.name + '. ' + prop.describe())
             print('[ ' + prop.get('name') + ' ]: ' + prop.describe())
 
     def generate(self):
         self.reset()
 
-        self.props.append(Prop('candle', ['flickering', 'bright', 'lit']))
-        self.props.append(Prop('candle', ['extingushed', 'depleted', 'unlit']))
+        self.name = 'generated scene'
 
-        self.props.append(Prop('flower', ['beautiful', 'flourishing', 'blooming']))
-        self.props.append(Prop('flower', ['wilting', 'dying', 'neglected']))
+        grass = Prop('field of grass')
+        grass.adjectives = ['lush','soft','green']
+        self.ground = grass
 
-        grass = Prop('patch of grass', ['dry','faded','dead'])
-        self.props.append(grass)
+        candle = Prop('candle')
+        candle.adjectives = ['flickering', 'bright', 'lit']
+        self.props.append(candle)
 
-        creature = creatures.Creature(['creature', 'critter'],['peaceful','calm','meditative'])
-        creature.sit(grass)
+        candle = Prop('candle')
+        candle.adjectives = ['extingushed', 'depleted', 'unlit']
+        self.props.append(candle)
+
+        flower = Prop('flower')
+        flower.adjectives = ['beautiful', 'flourishing', 'blooming']
+        self.props.append(flower)
+
+        flower = Prop('flower')
+        flower.adjectives = ['wilting', 'dying', 'neglected']
+        self.props.append(flower)
+
+        creature = creatures.Creature(['creature', 'critter'])
+        creature.adjectives = ['peaceful','calm','meditative']
+        creature.sit(self.ground)
         self.props.append(creature)
 
-        tree = Prop('tree', ['deciduous','leafy','yellow'])
+        tree = plants.Plant('tree', self.ground)
+        tree.adjectives = ['deciduous','leafy','yellow']
         self.props.append(tree)
 
         crow = birds.Crow()
