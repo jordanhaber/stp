@@ -21,6 +21,10 @@ class Prop:
         self.children.append(prop)
         prop.parent = self
 
+    def remove(self, prop):
+        self.children.remove(prop)
+        prop.parent = None                
+
     def get(self, key):
         try:
             value = getattr(self, key)
